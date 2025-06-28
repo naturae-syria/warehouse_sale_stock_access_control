@@ -19,5 +19,4 @@
 #    If not, see <http://www.gnu.org/licenses/>.
 #
 #############################################################################
-from . import res_config_settings
-from . import sale_order
+from . import res_config_settings, sale_order

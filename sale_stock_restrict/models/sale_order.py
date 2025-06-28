@@ -26,38 +26,41 @@ from odoo.exceptions import ValidationError
 class SaleOrderLine(models.Model):
     """Class to add fields in sale order line and automatically display the
     value in the fields if we select a product."""
-    _inherit = 'sale.order.line'
+
+    _inherit = "sale.order.line"
 
     qty_available = fields.Float(
-        string="On Hand Quantity",
-        help='Count of on hand quantity')
+        string="On Hand Quantity", help="Count of on hand quantity"
+    )
     forecast_quantity = fields.Float(
-        string="Forecast Quantity",
-        help='Count of forecast quantity')
+        string="Forecast Quantity", help="Count of forecast quantity"
+    )
 
-    @api.onchange('product_id')
+    @api.onchange("product_id")
     def _onchange_product_id(self):
         """Function to set the value of the fields based on product."""
         product_restriction = tools.str2bool(
-            self.env['ir.config_parameter'].sudo().get_param(
-                'sale_stock_restrict.product_restriction'
-            )
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("sale_stock_restrict.product_restriction")
         )
-        check_stock = self.env[
-            'ir.config_parameter'].sudo().get_param(
-            'sale_stock_restrict.check_stock')
+        check_stock = (
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("sale_stock_restrict.check_stock")
+        )
         if product_restriction:
-            if check_stock == 'on_hand_quantity':
+            if check_stock == "on_hand_quantity":
                 self.qty_available = self.product_id.qty_available
-            if check_stock == 'forecast_quantity':
+            if check_stock == "forecast_quantity":
                 self.forecast_quantity = self.product_id.virtual_available
 
 
 class SaleOrder(models.Model):
     """Class to add fields in sale order and a function for confirming
     quotation."""
-    _inherit = 'sale.order'
 
+    _inherit = "sale.order"
 
     def action_confirm(self):
         """Restrict confirming a quotation if the product is out of stock."""
@@ -66,30 +69,41 @@ class SaleOrder(models.Model):
         low_qty = ["Can't confirm the sale order due to: \n"]
         for rec in self.order_line:
             product_restriction = tools.str2bool(
-                self.env['ir.config_parameter'].sudo().get_param(
-                    'sale_stock_restrict.product_restriction'
-                )
+                self.env["ir.config_parameter"]
+                .sudo()
+                .get_param("sale_stock_restrict.product_restriction")
             )
-            check_stock = self.env[
-                'ir.config_parameter'].sudo().get_param(
-                'sale_stock_restrict.check_stock')
-            if (product_restriction and not self.website_id and
-                    rec.product_id.type == 'consu'):
-                if (check_stock == 'on_hand_quantity' and
-                        rec.product_uom_qty > rec.qty_available):
+            check_stock = (
+                self.env["ir.config_parameter"]
+                .sudo()
+                .get_param("sale_stock_restrict.check_stock")
+            )
+            if (
+                product_restriction
+                and not self.website_id
+                and rec.product_id.type == "consu"
+            ):
+                if (
+                    check_stock == "on_hand_quantity"
+                    and rec.product_uom_qty > rec.qty_available
+                ):
                     onhand_check = True
                     low_qty.append(
                         f"You have added {rec.product_uom_qty} units of "
                         f"{rec.product_id.name}, but you only have "
-                        f"{rec.qty_available} units available.")
-                if (check_stock == 'forecast_quantity' and
-                        rec.product_uom_qty > rec.forecast_quantity):
+                        f"{rec.qty_available} units available."
+                    )
+                if (
+                    check_stock == "forecast_quantity"
+                    and rec.product_uom_qty > rec.forecast_quantity
+                ):
                     forecast_check = True
                     low_qty.append(
                         f"You have added {rec.product_uom_qty} units of "
                         f"{rec.product_id.name}, but you only have "
-                        f"{rec.forecast_quantity} units available.")
-        message = ' '.join(map(str, low_qty))
+                        f"{rec.forecast_quantity} units available."
+                    )
+        message = " ".join(map(str, low_qty))
         if onhand_check:
             raise ValidationError(message)
         if forecast_check:

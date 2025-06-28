@@ -4,7 +4,7 @@
     <record id="rule_stock_picking_manager" model="ir.rule">
         <field name="name">Stock Picking Manager</field>
         <field name="model_id" ref="stock.model_stock_picking"/>
-        <field name="domain_force">['|',('picking_type_id.warehouse_id','in',env["res.users"].browse(user.id).allowed_warehouse_ids.ids),('picking_type_id.warehouse_id','=',False)]</field>
+        <field name="domain_force">['|',('picking_type_id.warehouse_id','in',user.allowed_warehouse_ids.ids),('picking_type_id.warehouse_id','=',False)]</field>
         <field name="groups" eval="[(4, ref('user_access_restrict.group_user_access_custom_manager'))]"/>
         <field name="perm_read" eval="True"/>
         <field name="perm_write" eval="True"/>
@@ -14,7 +14,7 @@
     <record id="rule_stock_picking_user" model="ir.rule">
         <field name="name">Stock Picking User</field>
         <field name="model_id" ref="stock.model_stock_picking"/>
-        <field name="domain_force">['|',('picking_type_id.warehouse_id','in',env["res.users"].browse(user.id).allowed_warehouse_ids.ids),('picking_type_id.warehouse_id','=',False)]</field>
+        <field name="domain_force">['|',('picking_type_id.warehouse_id','in',user.allowed_warehouse_ids.ids),('picking_type_id.warehouse_id','=',False)]</field>
         <field name="groups" eval="[(4, ref('user_access_restrict.group_user_access_custom_user'))]"/>
         <field name="perm_read" eval="True"/>
         <field name="perm_write" eval="True"/>
@@ -26,7 +26,7 @@
     <record id="rule_stock_location_manager" model="ir.rule">
         <field name="name">Stock Location Manager</field>
         <field name="model_id" ref="stock.model_stock_location"/>
-        <field name="domain_force">['|',('warehouse_id','in',env["res.users"].browse(user.id).allowed_warehouse_ids.ids),('warehouse_id','=',False)]</field>
+        <field name="domain_force">['|',('warehouse_id','in',user.allowed_warehouse_ids.ids),('warehouse_id','=',False)]</field>
         <field name="groups" eval="[(4, ref('user_access_restrict.group_user_access_custom_manager'))]"/>
         <field name="perm_read" eval="True"/>
         <field name="perm_write" eval="True"/>
@@ -36,7 +36,7 @@
     <record id="rule_stock_location_user" model="ir.rule">
         <field name="name">Stock Location User</field>
         <field name="model_id" ref="stock.model_stock_location"/>
-        <field name="domain_force">['|',('warehouse_id','in',env["res.users"].browse(user.id).allowed_warehouse_ids.ids),('warehouse_id','=',False)]</field>
+        <field name="domain_force">['|',('warehouse_id','in',user.allowed_warehouse_ids.ids),('warehouse_id','=',False)]</field>
         <field name="groups" eval="[(4, ref('user_access_restrict.group_user_access_custom_user'))]"/>
         <field name="perm_read" eval="True"/>
         <field name="perm_write" eval="True"/>
@@ -48,7 +48,7 @@
     <record id="rule_stock_move_manager" model="ir.rule">
         <field name="name">Stock Move Manager</field>
         <field name="model_id" ref="stock.model_stock_move"/>
-        <field name="domain_force">['|',('move_line_ids.location_id.warehouse_id','in',env["res.users"].browse(user.id).allowed_warehouse_ids.ids),('move_line_ids.location_id.warehouse_id','=',False)]</field>
+        <field name="domain_force">['|',('move_line_ids.location_id.warehouse_id','in',user.allowed_warehouse_ids.ids),('move_line_ids.location_id.warehouse_id','=',False)]</field>
         <field name="groups" eval="[(4, ref('user_access_restrict.group_user_access_custom_manager'))]"/>
         <field name="perm_read" eval="True"/>
         <field name="perm_write" eval="True"/>
@@ -58,7 +58,7 @@
     <record id="rule_stock_move_user" model="ir.rule">
         <field name="name">Stock Move User</field>
         <field name="model_id" ref="stock.model_stock_move"/>
-        <field name="domain_force">['|',('move_line_ids.location_id.warehouse_id','in',env["res.users"].browse(user.id).allowed_warehouse_ids.ids),('move_line_ids.location_id.warehouse_id','=',False)]</field>
+        <field name="domain_force">['|',('move_line_ids.location_id.warehouse_id','in',user.allowed_warehouse_ids.ids),('move_line_ids.location_id.warehouse_id','=',False)]</field>
         <field name="groups" eval="[(4, ref('user_access_restrict.group_user_access_custom_user'))]"/>
         <field name="perm_read" eval="True"/>
         <field name="perm_write" eval="True"/>
@@ -70,7 +70,7 @@
     <record id="rule_stock_quant_manager" model="ir.rule">
         <field name="name">Stock Quant Manager</field>
         <field name="model_id" ref="stock.model_stock_quant"/>
-        <field name="domain_force">['|',('location_id.warehouse_id','in',env["res.users"].browse(user.id).allowed_warehouse_ids.ids),('location_id.warehouse_id','=',False)]</field>
+        <field name="domain_force">['|',('location_id.warehouse_id','in',user.allowed_warehouse_ids.ids),('location_id.warehouse_id','=',False)]</field>
         <field name="groups" eval="[(4, ref('user_access_restrict.group_user_access_custom_manager'))]"/>
         <field name="perm_read" eval="True"/>
         <field name="perm_write" eval="True"/>
@@ -80,7 +80,7 @@
     <record id="rule_stock_quant_user" model="ir.rule">
         <field name="name">Stock Quant User</field>
         <field name="model_id" ref="stock.model_stock_quant"/>
-        <field name="domain_force">['|',('location_id.warehouse_id','in',env["res.users"].browse(user.id).allowed_warehouse_ids.ids),('location_id.warehouse_id','=',False)]</field>
+        <field name="domain_force">['|',('location_id.warehouse_id','in',user.allowed_warehouse_ids.ids),('location_id.warehouse_id','=',False)]</field>
         <field name="groups" eval="[(4, ref('user_access_restrict.group_user_access_custom_user'))]"/>
         <field name="perm_read" eval="True"/>
         <field name="perm_write" eval="True"/>
@@ -92,7 +92,7 @@
     <record id="rule_sale_order_manager" model="ir.rule">
         <field name="name">Sale Order Manager</field>
         <field name="model_id" ref="sale.model_sale_order"/>
-        <field name="domain_force">['|',('warehouse_id','in',env["res.users"].browse(user.id).allowed_warehouse_ids.ids),('warehouse_id','=',False)]</field>
+        <field name="domain_force">['|',('warehouse_id','in',user.allowed_warehouse_ids.ids),('warehouse_id','=',False)]</field>
         <field name="groups" eval="[(4, ref('user_access_restrict.group_user_access_custom_manager'))]"/>
         <field name="perm_read" eval="True"/>
         <field name="perm_write" eval="True"/>
@@ -102,7 +102,7 @@
     <record id="rule_sale_order_user" model="ir.rule">
         <field name="name">Sale Order User</field>
         <field name="model_id" ref="sale.model_sale_order"/>
-        <field name="domain_force">['|',('warehouse_id','in',env["res.users"].browse(user.id).allowed_warehouse_ids.ids),('warehouse_id','=',False)]</field>
+        <field name="domain_force">['|',('warehouse_id','in',user.allowed_warehouse_ids.ids),('warehouse_id','=',False)]</field>
         <field name="groups" eval="[(4, ref('user_access_restrict.group_user_access_custom_user'))]"/>
         <field name="perm_read" eval="True"/>
         <field name="perm_write" eval="True"/>
@@ -114,7 +114,7 @@
     <record id="rule_purchase_order_manager" model="ir.rule">
         <field name="name">Purchase Order Manager</field>
         <field name="model_id" ref="purchase.model_purchase_order"/>
-        <field name="domain_force">['|',('picking_type_id.warehouse_id','in',env["res.users"].browse(user.id).allowed_warehouse_ids.ids),('picking_type_id.warehouse_id','=',False)]</field>
+        <field name="domain_force">['|',('picking_type_id.warehouse_id','in',user.allowed_warehouse_ids.ids),('picking_type_id.warehouse_id','=',False)]</field>
         <field name="groups" eval="[(4, ref('user_access_restrict.group_user_access_custom_manager'))]"/>
         <field name="perm_read" eval="True"/>
         <field name="perm_write" eval="True"/>
@@ -124,7 +124,7 @@
     <record id="rule_purchase_order_user" model="ir.rule">
         <field name="name">Purchase Order User</field>
         <field name="model_id" ref="purchase.model_purchase_order"/>
-        <field name="domain_force">['|',('picking_type_id.warehouse_id','in',env["res.users"].browse(user.id).allowed_warehouse_ids.ids),('picking_type_id.warehouse_id','=',False)]</field>
+        <field name="domain_force">['|',('picking_type_id.warehouse_id','in',user.allowed_warehouse_ids.ids),('picking_type_id.warehouse_id','=',False)]</field>
         <field name="groups" eval="[(4, ref('user_access_restrict.group_user_access_custom_user'))]"/>
         <field name="perm_read" eval="True"/>
         <field name="perm_write" eval="True"/>

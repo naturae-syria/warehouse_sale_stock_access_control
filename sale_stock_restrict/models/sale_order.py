@@ -58,17 +58,11 @@ class SaleOrder(models.Model):
     quotation."""
     _inherit = 'sale.order'
 
-    onhand_check = fields.Boolean(
-        string='Enable OnHand',
-        help='To check whether it is based on on-hand quantity')
-    forecast_check = fields.Boolean(
-        string='Enable Forecast',
-        help='To check whether it is based on forecast quantity')
 
     def action_confirm(self):
-        """Function to restrict the confirming of quotation if the product is
-        out of stock."""
-        res = super().action_confirm()
+        """Restrict confirming a quotation if the product is out of stock."""
+        onhand_check = False
+        forecast_check = False
         low_qty = ["Can't confirm the sale order due to: \n"]
         for rec in self.order_line:
             product_restriction = tools.str2bool(
@@ -83,21 +77,22 @@ class SaleOrder(models.Model):
                     rec.product_id.type == 'consu'):
                 if (check_stock == 'on_hand_quantity' and
                         rec.product_uom_qty > rec.qty_available):
-                    self.onhand_check = True
+                    onhand_check = True
                     low_qty.append(
                         f"You have added {rec.product_uom_qty} units of "
                         f"{rec.product_id.name}, but you only have "
                         f"{rec.qty_available} units available.")
                 if (check_stock == 'forecast_quantity' and
                         rec.product_uom_qty > rec.forecast_quantity):
-                    self.forecast_check = True
+                    forecast_check = True
                     low_qty.append(
                         f"You have added {rec.product_uom_qty} units of "
                         f"{rec.product_id.name}, but you only have "
                         f"{rec.forecast_quantity} units available.")
         message = ' '.join(map(str, low_qty))
-        if self.onhand_check:
+        if onhand_check:
             raise ValidationError(message)
-        if self.forecast_check:
+        if forecast_check:
             raise ValidationError(message)
+        res = super().action_confirm()
         return res

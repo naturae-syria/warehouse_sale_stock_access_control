@@ -19,7 +19,7 @@
 #    If not, see <http://www.gnu.org/licenses/>.
 #
 #############################################################################
-from odoo import api, fields, models
+from odoo import api, fields, models, tools
 from odoo.exceptions import ValidationError
 
 
@@ -38,8 +38,11 @@ class SaleOrderLine(models.Model):
     @api.onchange('product_id')
     def _onchange_product_id(self):
         """Function to set the value of the fields based on product."""
-        product_restriction = self.env['ir.config_parameter'].sudo().get_param(
-            'sale_stock_restrict.product_restriction')
+        product_restriction = tools.str2bool(
+            self.env['ir.config_parameter'].sudo().get_param(
+                'sale_stock_restrict.product_restriction'
+            )
+        )
         check_stock = self.env[
             'ir.config_parameter'].sudo().get_param(
             'sale_stock_restrict.check_stock')
@@ -68,9 +71,11 @@ class SaleOrder(models.Model):
         res = super().action_confirm()
         low_qty = ["Can't confirm the sale order due to: \n"]
         for rec in self.order_line:
-            product_restriction = self.env[
-                'ir.config_parameter'].sudo().get_param(
-                'sale_stock_restrict.product_restriction')
+            product_restriction = tools.str2bool(
+                self.env['ir.config_parameter'].sudo().get_param(
+                    'sale_stock_restrict.product_restriction'
+                )
+            )
             check_stock = self.env[
                 'ir.config_parameter'].sudo().get_param(
                 'sale_stock_restrict.check_stock')

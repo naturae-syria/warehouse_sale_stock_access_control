@@ -19,7 +19,7 @@
 #    If not, see <http://www.gnu.org/licenses/>.
 #
 #############################################################################
-from odoo import api, fields, models
+from odoo import api, fields, models, tools
 
 
 class ResConfigSettings(models.TransientModel):
@@ -39,7 +39,9 @@ class ResConfigSettings(models.TransientModel):
         """Function to take values from the fields"""
         res = super().get_values()
         params = self.env['ir.config_parameter'].sudo().get_param
-        product_restriction = params('sale_stock_restrict.product_restriction')
+        product_restriction = tools.str2bool(
+            params('sale_stock_restrict.product_restriction')
+        )
         check_stock = params('sale_stock_restrict.check_stock')
         res.update(
             product_restriction=product_restriction,

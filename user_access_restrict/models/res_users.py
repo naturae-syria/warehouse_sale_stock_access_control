@@ -83,3 +83,11 @@ class ResUsers(models.Model):
                     user.write(
                         {"groups_id": [(3, group_manager.id), (3, group_user.id)]}
                     )
+
+    def get_effective_warehouses(self):
+        """Return warehouses allowed for the user or all if none specified."""
+        self.ensure_one()
+        warehouses = self.allowed_warehouse_ids
+        if not warehouses:
+            warehouses = self.env["stock.warehouse"].search([])
+        return warehouses

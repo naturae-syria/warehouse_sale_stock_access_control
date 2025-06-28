@@ -18,7 +18,7 @@ Affero General Public License v3.0 (AGPL v3)
 
 Company
 -------
-* 'Cybrosys Techno Solutions <https://cybrosys.com/>
+* Cybrosys Techno Solutions <https://cybrosys.com/>
 
 Credits
 -------

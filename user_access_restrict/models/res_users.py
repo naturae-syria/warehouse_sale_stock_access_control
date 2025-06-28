@@ -83,3 +83,4 @@ class ResUsers(models.Model):
                     user.write(
                         {"groups_id": [(3, group_manager.id), (3, group_user.id)]}
                     )
+

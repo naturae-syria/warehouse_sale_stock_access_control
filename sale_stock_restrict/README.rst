@@ -8,7 +8,7 @@ Sale Stock Restrict
 
 Installation
 ============
-- www.odoo.com/documentation/17.0/setup/install.html
+ - https://www.odoo.com/documentation/18.0/setup/install.html
 - Install our custom addon
 
 License

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="group_user_access_custom_manager" model="res.groups">
+        <field name="name">Custom Manager</field>
+        <field name="category_id" ref="base.module_category_inventory"/>
+    </record>
+    <record id="group_user_access_custom_user" model="res.groups">
+        <field name="name">Custom User</field>
+        <field name="category_id" ref="base.module_category_inventory"/>
+    </record>
+</odoo>

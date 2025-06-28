@@ -13,6 +13,7 @@
     "data": [
         "security/user_groups.xml",
         "security/record_rules.xml",
+        "security/ir.model.access.csv",
         "views/res_users_views.xml",
         "i18n/en.po",
         "i18n/ar.po",

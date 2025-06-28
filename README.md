@@ -15,7 +15,15 @@ Follow the standard Odoo installation guide: <https://www.odoo.com/documentation
 After installing Odoo, add these modules to your addons path and install them from the Apps menu.
 
 ## Running Tests
-Tests require a working Odoo environment. Once Odoo and the modules' dependencies are installed, run:
+Tests rely on an existing Odoo 18.0 installation. You can either install Odoo locally from source or use a Docker container such as `odoo:18.0`.
+
+Install the Python requirements with:
+
+```bash
+pip install -r requirements.txt
+```
+
+Once Odoo is available and dependencies are installed, run:
 
 ```bash
 pytest

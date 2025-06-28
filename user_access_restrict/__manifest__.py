@@ -12,6 +12,7 @@
     "depends": ["stock", "sale_management", "purchase"],
     "data": [
         "security/user_groups.xml",
+        "security/ir.model.access.csv",
         "security/record_rules.xml",
         "views/res_users_views.xml",
         "i18n/en.po",

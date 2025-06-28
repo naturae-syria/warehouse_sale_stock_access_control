@@ -81,7 +81,7 @@ class SaleOrder(models.Model):
             if (
                 product_restriction
                 and not self.website_id
-                and rec.product_id.type == "consu"
+                and rec.product_id.type == "product"
             ):
                 if (
                     check_stock == "on_hand_quantity"

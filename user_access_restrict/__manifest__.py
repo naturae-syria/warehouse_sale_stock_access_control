@@ -15,6 +15,8 @@
         "security/ir.model.access.csv",
         "security/record_rules.xml",
         "views/res_users_views.xml",
+        "i18n/en.po",
+        "i18n/ar.po",
     ],
     "license": "AGPL-3",
     "installable": True,

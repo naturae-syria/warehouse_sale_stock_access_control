@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#* user_access_restrict
+# * user_access_restrict
 #
 msgid ""
 msgstr ""
@@ -8,8 +8,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-01-01 00:00+0000\n"
 "PO-Revision-Date: 2024-01-01 00:00+0000\n"
-"Language-Team: English\n"
-"Language: en\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,25 +18,25 @@ msgstr ""
 #. module: user_access_restrict
 #: model:ir.ui.view,arch_db:user_access_restrict.view_users_form_inherit_user_access
 msgid "\nنوع الوصول المدير يملك صلاحيات كاملة والمستخدم فقط قراءة وتعديل"
-msgstr "\nAccess type: the manager has full privileges and the user only has read and edit rights"
+msgstr "\nنوع الوصول المدير يملك صلاحيات كاملة والمستخدم فقط قراءة وتعديل"
 
 #. module: user_access_restrict
 #: model:ir.ui.view,arch_db:user_access_restrict.view_users_form_inherit_user_access
 msgid "Access Restrict"
-msgstr "Access Restrict"
+msgstr "تقييد الوصول"
 
 #. module: user_access_restrict
 #: model:ir.model.fields,field_description:user_access_restrict.field_res_users__access_type
 msgid "نوع الوصول"
-msgstr "Access Type"
+msgstr "نوع الوصول"
 
 #. module: user_access_restrict
 #: model:ir.model.fields,field_description:user_access_restrict.field_res_users__allowed_warehouse_ids
 msgid "المستودعات المصرح بها"
-msgstr "Allowed Warehouses"
+msgstr "المستودعات المصرح بها"
 
 #. module: user_access_restrict
 #: code:addons/user_access_restrict/models/res_users.py:46
 #, python-format
 msgid "يجب تحديد مستودع واحد على الأقل"
-msgstr "At least one warehouse must be specified"
+msgstr "يجب تحديد مستودع واحد على الأقل"

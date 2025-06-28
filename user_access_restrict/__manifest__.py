@@ -1,0 +1,23 @@
+# -*- coding: utf-8 -*-
+{
+    "name": "User Access Restrict",
+    "version": "18.0.1.0.0",
+    "category": "Warehouse",
+    "summary": "Dynamic warehouse based access control",
+    "description": "Manage user permissions per warehouse using custom access types.",
+    "author": "Cybrosys Techno solutions",
+    "company": "Cybrosys Techno Solutions",
+    "maintainer": "Cybrosys Techno Solutions",
+    "website": "https://www.cybrosys.com",
+    "depends": ["stock", "sale_management", "purchase"],
+    "data": [
+        "security/user_groups.xml",
+        "security/ir.model.access.csv",
+        "security/record_rules.xml",
+        "views/res_users_views.xml",
+    ],
+    "license": "AGPL-3",
+    "installable": True,
+    "auto_install": False,
+    "application": False,
+}

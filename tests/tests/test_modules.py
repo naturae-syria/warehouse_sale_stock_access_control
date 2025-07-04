@@ -49,6 +49,36 @@ class TestRestrictModules(TransactionCase):
         with self.assertRaises(ValidationError):
             order.action_confirm()
 
+    def test_stock_product_restriction_disabled(self):
+        """When restriction disabled, confirmation should succeed."""
+        self.env["ir.config_parameter"].sudo().set_param(
+            "sale_stock_restrict.product_restriction", False
+        )
+
+        product = self.env["product.product"].create({"name": "Free Product", "type": "product"})
+
+        partner = self.env.ref("base.res_partner_3")
+        order = self.env["sale.order"].create(
+            {
+                "partner_id": partner.id,
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": product.id,
+                            "product_uom_qty": 1,
+                            "name": product.name,
+                            "price_unit": 0.0,
+                        },
+                    )
+                ],
+            }
+        )
+
+        order.action_confirm()
+        self.assertEqual(order.state, "sale")
+
     def test_user_access_restrict_installed(self):
         module = self.env["ir.module.module"].search(
             [("name", "=", "user_access_restrict")], limit=1

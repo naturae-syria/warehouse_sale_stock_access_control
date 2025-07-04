@@ -5,7 +5,10 @@ This repository provides two Odoo 18 modules to manage warehouse restrictions.
 ## Modules
 
 ### sale_stock_restrict
-Restricts confirming sale orders when products are not available. The check can be based on on-hand or forecasted quantities.
+Restricts confirming sale orders when products are not available.
+
+- Toggle the behaviour with the `sale_stock_restrict.product_restriction` setting.
+- Use `sale_stock_restrict.check_stock` to decide whether on-hand or forecast quantities are evaluated.
 
 ### user_access_restrict
 Adds warehouse-based access control. Users can be assigned access to specific warehouses with custom roles (manager or user) that determine permitted operations.
